@@ -10,3 +10,4 @@ docker run --name cuckoo_duckdb --privileged -it --shm-size=4g --cap-add=SYS_PTR
 ## Environment notes
 - DuckDB Version: 1.2.1
 - Docker Image Distro: Ubuntu:22.04
+- C++ Version: 20

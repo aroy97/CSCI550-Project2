@@ -44,14 +44,14 @@ RUN echo 'if [ -f /etc/bash_completion ] && ! shopt -oq posix; then' \
          '. /etc/bash_completion;' \
          'fi' >> /etc/bash.bashrc
 
-
+# to set version
 ARG VERSION=1.2.1
 ADD v${VERSION}.tar.gz .
 
 # build debug mode
-WORKDIR ./duckdb-${VERSION}
-RUN cmake -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_STANDARD=20 . && \
-    ninja -j$(nproc)
+WORKDIR /duckdb-build
+RUN cmake ../duckdb-${VERSION} -G Ninja -DCMAKE_BUILD_TYPE=debug -DCMAKE_CXX_STANDARD=20 . 
+RUN ninja -j$(($(nproc)/2))
 
 
 # switch user
