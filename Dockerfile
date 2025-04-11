@@ -49,6 +49,10 @@ RUN echo 'if [ -f /etc/bash_completion ] && ! shopt -oq posix; then' \
 ENV PATH="/duckdb-build:$PATH"
 RUN echo 'export PATH=$PATH:/duckdb-build' >> ~/.bashrc
 
+# copy the files to current folder
+WORKDIR /repo
+COPY . /repo
+
 # to set version
 ARG VERSION=1.2.1
 ADD v${VERSION}.tar.gz .
