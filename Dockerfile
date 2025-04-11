@@ -13,6 +13,7 @@ RUN apt-get update && \
                        valgrind \
                        dstat \
                        git \
+                       nano \
                        tmux \
                        curl \
                        vim \
@@ -43,6 +44,10 @@ RUN adduser --disabled-password --gecos "" csci550user && \
 RUN echo 'if [ -f /etc/bash_completion ] && ! shopt -oq posix; then' \
          '. /etc/bash_completion;' \
          'fi' >> /etc/bash.bashrc
+
+# add duckdb to PATH
+ENV PATH="/duckdb-build:$PATH"
+RUN echo 'export PATH=$PATH:/duckdb-build' >> ~/.bashrc
 
 # to set version
 ARG VERSION=1.2.1
