@@ -55,6 +55,6 @@ RUN ninja -j$(($(nproc)/2))
 
 
 # switch user
-USER csci550user
+# USER csci550user
 
 CMD ["/bin/bash"]
