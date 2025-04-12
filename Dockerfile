@@ -54,6 +54,7 @@ WORKDIR /repo
 COPY . /repo
 
 # to set version
+WORKDIR /
 ARG VERSION=1.2.1
 ADD v${VERSION}.tar.gz .
 
@@ -61,7 +62,7 @@ ADD v${VERSION}.tar.gz .
 WORKDIR /duckdb-build
 RUN cmake ../duckdb-${VERSION} -G Ninja -DCMAKE_BUILD_TYPE=debug -DCMAKE_CXX_STANDARD=20 . 
 RUN ninja -j$(($(nproc)/2))
-
+#RUN ninja -j1
 
 # switch user
 # USER csci550user
